@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -53,12 +55,12 @@ public class Pizzeria {
 	}
 
 	public static void main(String[] args) {
-		File inputFile1 =  new File("resources/a_example");
+		File inputFile1 =  new File("resources/a_example.in");
 		File inputFile2=new File("resources/c_many_ingredients.in");
 		int team2 = 0, team3 = 0, team4 = 0, totalPizza = 0;
 		Scanner scan = null;
 		try {
-			scan=new Scanner(inputFile2);
+			scan=new Scanner(inputFile1);
 			totalPizza=scan.nextInt();
 			team2=scan.nextInt();
 			team3=scan.nextInt();
@@ -85,16 +87,26 @@ public class Pizzeria {
 			pizzas[i]=new Pizza();
 			pizzas[i].index=i;
 			pizzas[i].totalIngredients=scan.nextInt();
+			String temp[]=new String[pizzas[i].totalIngredients];
 			for(int j=0;j<pizzas[i].totalIngredients;j++) {
-				pizzas[i].ingredients[j]=scan.next();
+				temp[j]=scan.next();
 			}
+			pizzas[i].ingredients=temp;
 			
 		}
-		System.out.println(requiredPizzas);
+		Arrays.sort(pizzas, new Comparator<Pizza>() {
+			public int compare(Pizza p1, Pizza p2) {
+				return p1.totalIngredients -p2.totalIngredients;
+			}
+		});
+		for (Pizza pizza : pizzas) {
+			System.out.println(pizza);
+		}
+		System.out.println("Required Ingredients: " + requiredPizzas);
 		//distrubuteToTeam2(pizzas, team2);
 		//distrubuteToTeam3(pizzas, team3);
 		//System.out.println(pizzas);
-		System.out.println("Ended");
+		//System.out.println("Ended");
 		
 
 	}
