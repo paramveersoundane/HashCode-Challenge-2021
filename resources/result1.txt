@@ -1,0 +1,7 @@
+Ingredients:2 Pizza:4 1
+Ingredients:3 Pizza:0 3
+Ingredients:3 Pizza:1 5
+Ingredients:3 Pizza:2 7
+Ingredients:3 Pizza:3 9
+Required Ingredients: 12
+Total Score for: resources\a_example.in is 25
